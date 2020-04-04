@@ -8,7 +8,7 @@ import TableChart from '../TableChart';
 
 const Layout = () => {
     return (
-      <div className="h-screen flex overflow-hidden bg-gray-100">
+      <div className="h-screen flex bg-gray-100">
     
         <Sidebar />
 
