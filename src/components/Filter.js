@@ -34,22 +34,22 @@ const regions = [
   'Östergötland'
 ];
 
-const Filter = ({ onClick = () => {} }) => {
+const Filter = ({ onClick = () => {}, language = {} }) => {
   const [values, setValues] = useState({
     from: dateFormat.render(new Date())
   });
 
   return (
     <div>
-      <h3 className="font-medium text-gray-900">Filtreringsval</h3>
+      <h3 className="font-medium text-gray-900">{language.filteringOptions}</h3>
 
       <div className="mt-5">
-        <label>Välj region</label>
+        <label>{language.selectRegion}</label>
 
         <div className="inline-block relative w-full">
           <Select
-            label="Välj"
-            placeholder="Alla"
+            label={language.select}
+            placeholder={language.all}
             options={regions.map(r => {
               return {
                 label: r,
@@ -74,9 +74,10 @@ const Filter = ({ onClick = () => {} }) => {
             to: dateFormat.render(dates.end)
           });
         }}
+        language={language}
       />
 
-      <Button onClick={() => onClick(values)}>Visa</Button>
+      <Button onClick={() => onClick(values)}>{language.show}</Button>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import DatePickerLib from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-const DatePicker = ({ onChange = () => {} }) => {
+const DatePicker = ({ onChange = () => {}, language = {} }) => {
   const fromDate = new Date();
   fromDate.setDate(fromDate.getDate() - 2);
 
@@ -15,7 +15,7 @@ const DatePicker = ({ onChange = () => {} }) => {
       <div className="mt-5">
         <div>
           <label>
-            Från
+            {language.from}
             <div className="relative block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
               <DatePickerLib
                 selected={startDate}
@@ -58,7 +58,7 @@ const DatePicker = ({ onChange = () => {} }) => {
       <div className="mt-5">
         <div>
           <label>
-            Till
+            {language.to}
             <div className="relative block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
               <DatePickerLib
                 selected={endDate}

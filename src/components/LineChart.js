@@ -21,7 +21,7 @@ const dateNameFormat = tinytime('{DD} {MM}', {
   padDays: true,
 });
 
-const LineChartGraph = ({ answers = [], values = {} }) => {
+const LineChartGraph = ({ language = {}, values = {} }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
@@ -56,7 +56,7 @@ const LineChartGraph = ({ answers = [], values = {} }) => {
         name: dateNameFormat.render(fromDate),
         pv: 0,
       },
-      lineData[0]
+      lineData[0],
     ];
   }
 
@@ -70,7 +70,7 @@ const LineChartGraph = ({ answers = [], values = {} }) => {
           padding: '100px 25px',
         }}
       >
-        Loading...
+        {language.loading}
       </div>
     );
   }
@@ -84,6 +84,9 @@ const LineChartGraph = ({ answers = [], values = {} }) => {
         padding: '100px 25px',
       }}
     >
+      <h3 className="mb-6 text-center text-1xl leading-9 font-bold text-gray-900">
+        {language.lineChartTitle}
+      </h3>
       <ResponsiveContainer>
         <AreaChart width={500} height={300} data={lineData}>
           <CartesianGrid strokeDasharray="3 3" />
