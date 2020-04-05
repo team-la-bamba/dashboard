@@ -41,12 +41,24 @@ const LineChartGraph = ({ answers = [], values = {} }) => {
     });
   }, [values]);
 
-  const lineData = data.map((d) => {
+  let lineData = data.map((d) => {
     return {
       name: dateNameFormat.render(new Date(d.date)),
       pv: d.total,
     };
   });
+
+  if (lineData.length === 1) {
+    const fromDate = new Date(values.from);
+    fromDate.setDate(fromDate.getDate() - 1);
+    lineData = [
+      {
+        name: dateNameFormat.render(fromDate),
+        pv: 0,
+      },
+      lineData[0]
+    ];
+  }
 
   if (loading) {
     return (
