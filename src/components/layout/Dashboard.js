@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import Header from '../Header';
+import Footer from './Footer';
 import LineChart from '../LineChart';
 import TableChart from '../TableChart';
 import tinytime from 'tinytime';
@@ -8,7 +9,7 @@ import { fetchAnswers } from '../../lib/api';
 
 const dateFormat = tinytime('{YYYY}-{Mo}-{DD}', {
   padMonth: true,
-  padDays: true,
+  padDays: true
 });
 
 const Layout = () => {
@@ -17,12 +18,12 @@ const Layout = () => {
   const [values, setValues] = useState({
     region: '',
     from: dateFormat.render(fromDate),
-    to: dateFormat.render(new Date()),
+    to: dateFormat.render(new Date())
   });
   const [answers, setAnswers] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchAnswersInternal = async (values) => {
+  const fetchAnswersInternal = async values => {
     setLoading(true);
 
     if (values && Object.keys(values).length) {
@@ -40,7 +41,7 @@ const Layout = () => {
 
   return (
     <div className="h-screen flex bg-gray-100 border-t-4 border-solid border-blue-500 bg-gray-50">
-      <Sidebar onClick={(values) => fetchAnswersInternal(values)} />
+      <Sidebar onClick={values => fetchAnswersInternal(values)} />
 
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
         <main
@@ -69,6 +70,7 @@ const Layout = () => {
               </div>
             </div>
           )}
+          <Footer />
         </main>
       </div>
     </div>
