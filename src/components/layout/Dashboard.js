@@ -16,6 +16,7 @@ const dateFormat = tinytime('{YYYY}-{Mo}-{DD}', {
 const langs = {
   en: {
     appTitle: 'Crisistemperature',
+    appLang: 'en',
     all: 'All',
     select: 'Select',
     selectRegion: 'Select region',
@@ -32,6 +33,7 @@ const langs = {
   },
   sv: {
     appTitle: 'Kristempen',
+    appLang: 'sv',
     all: 'Alla',
     select: 'Välj',
     selectRegion: 'Välj region',
