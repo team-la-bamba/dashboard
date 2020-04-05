@@ -6,7 +6,12 @@ function Footer() {
       <div className="flex justify-between align-center items-center flex-col sm:flex-row">
         <ul className="flex pb-5 sm:pb-0">
           <li>
-            <a href="https://app.labamba.space/" className="mr-3 underline">
+            <a
+              href="https://app.labamba.space/"
+              className="mr-3 underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Kristempen app
             </a>
           </li>
@@ -14,16 +19,20 @@ function Footer() {
             <a
               href="https://app.labamba.space/policy"
               className="mr-3 underline"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Data policy
             </a>
           </li>
           <li>
             <a
-              href="https://app.labamba.space/concept"
+              href="https://app.labamba.space/pitch"
               className="mr-3 underline"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Our solution plan
+              Our pitch
             </a>
           </li>
         </ul>
