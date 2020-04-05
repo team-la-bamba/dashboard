@@ -39,7 +39,7 @@ const Layout = () => {
   }, [values]);
 
   return (
-    <div className="h-screen flex bg-gray-100">
+    <div className="h-screen flex bg-gray-100 border-t-4 border-solid border-blue-500 bg-gray-50">
       <Sidebar onClick={(values) => fetchAnswersInternal(values)} />
 
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
