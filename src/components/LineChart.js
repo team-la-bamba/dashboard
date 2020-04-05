@@ -60,43 +60,48 @@ const LineChartGraph = ({ language = {}, values = {} }) => {
     ];
   }
 
-  if (loading) {
-    return (
+  let html = <p className="text-center">{language.loading}</p>;
+
+  if (!loading) {
+    html = (
       <div
         style={{
           margin: '50px auto',
           height: '600px',
           background: 'white',
-          padding: '100px 25px',
+          padding: '50px 25px 150px 25px',
         }}
       >
-        {language.loading}
+        <ResponsiveContainer>
+          <AreaChart width={500} height={300} data={lineData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" padding={{ left: 30, right: 30 }} />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Area
+              type="monotone"
+              dataKey="pv"
+              stroke="#667EEA"
+              fill="#A3BFFA"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
       </div>
     );
   }
 
   return (
     <div
-      style={{
-        margin: '50px auto',
-        height: '600px',
-        background: 'white',
-        padding: '100px 25px',
-      }}
+      className="bg-white shadow overflow-hidden sm:rounded-lg"
+      style={{ maxHeight: '600px' }}
     >
-      <h3 className="mb-6 text-center text-1xl leading-9 font-bold text-gray-900">
-        {language.lineChartTitle}
-      </h3>
-      <ResponsiveContainer>
-        <AreaChart width={500} height={300} data={lineData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" padding={{ left: 30, right: 30 }} />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Area type="monotone" dataKey="pv" stroke="#667EEA" fill="#A3BFFA" />
-        </AreaChart>
-      </ResponsiveContainer>
+      <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
+        <h3 className="mb-6 text-center text-1xl leading-9 font-bold text-gray-900">
+          {language.lineChartTitle}
+        </h3>
+        <div className="mb-6">{html}</div>
+      </div>
     </div>
   );
 };
