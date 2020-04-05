@@ -56,7 +56,7 @@ const Layout = () => {
                 <div className="mt-10 grid grid-flow-row grid-cols-2 gap-4">
                   {answers.map((q, qi) => (
                     <div key={qi}>
-                      <TableChart {...q} />
+                      <TableChart {...q} values={values} />
                     </div>
                   ))}
                 </div>
