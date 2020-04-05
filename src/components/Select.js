@@ -5,32 +5,43 @@ export default ({ label, onChange, options, placeholder, value }) => {
   const selected = options.filter(o => o.value === value).pop();
 
   const customStyles = {
-    option: provided => ({
+    option: (provided) => ({
       ...provided,
-      padding: 20,
-      color: '#333'
+      padding: 10,
+      color: "#333",
+      textAlign: "left",
+      paddingLeft: "1em"
     }),
-    control: provided => ({
-      ...provided,
-      boxShadow: '0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06)',
-      borderColor: '#9fa6b2',
-      padding: '0'
+    control: (provided) => ({
+        ...provided,
+        borderColor: "#9fa6b2",
+        padding: "0"
     }),
-    valueContainer: provided => ({
+    valueContainer: (provided) => ({
+        ...provided,
+        padding: "0"
+    }),
+    singleValue: (provided) => ({
+        ...provided,
+        paddingLeft: "1em",
+        marginLeft: "0"
+    }),
+    clearIndicator: (provided) => ({
       ...provided,
-      padding: '0'
+      color: "#333"
     }),
     indicatorSeparator: () => ({}),
-    dropdownIndicator: provided => ({
-      ...provided,
-      color: '#333'
+    dropdownIndicator: (provided) => ({
+        ...provided,
+        color: '#333'
     }),
     placeholder: () => ({
-      color: '#333',
-      paddingLeft: '1rem'
+        color: '#333',
+        paddingLeft: '1rem'
     }),
-    singleValue: () => ({
-      paddingLeft: '1rem'
+    input: (provided) => ({
+        ...provided,
+        paddingLeft: '1rem'
     })
   };
 
