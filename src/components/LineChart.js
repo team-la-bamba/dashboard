@@ -69,7 +69,7 @@ const LineChartGraph = ({ language = {}, values = {} }) => {
           margin: '50px auto',
           height: '600px',
           background: 'white',
-          padding: '50px 25px 150px 25px',
+          padding: '50px 0 150px 0',
         }}
       >
         <ResponsiveContainer>
@@ -96,7 +96,7 @@ const LineChartGraph = ({ language = {}, values = {} }) => {
       className="bg-white shadow overflow-hidden sm:rounded-lg"
       style={{ maxHeight: '600px' }}
     >
-      <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
+      <div className="sm:px-4 sm:py-5 border-b border-gray-200 -ml-10 sm:ml-0 sm:mr-10 sm:px-6">
         <h3 className="mb-6 text-center text-1xl leading-9 font-bold text-gray-900">
           {language.lineChartTitle}
         </h3>
