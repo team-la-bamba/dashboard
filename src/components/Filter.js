@@ -7,7 +7,7 @@ import tinytime from 'tinytime';
 
 const dateFormat = tinytime('{YYYY}-{Mo}-{DD}', {
   padMonth: true,
-  padDays: true,
+  padDays: true
 });
 
 const regions = [
@@ -31,12 +31,12 @@ const regions = [
   'Västmanland',
   'Västra Götaland',
   'Örebro län',
-  'Östergötland',
+  'Östergötland'
 ];
 
 const Filter = ({ onClick = () => {} }) => {
   const [values, setValues] = useState({
-    from: dateFormat.render(new Date()),
+    from: dateFormat.render(new Date())
   });
 
   return (
@@ -50,16 +50,16 @@ const Filter = ({ onClick = () => {} }) => {
           <Select
             label="Välj"
             placeholder="Alla"
-            options={regions.map((r) => {
+            options={regions.map(r => {
               return {
                 label: r,
-                value: r,
+                value: r
               };
             })}
-            onChange={(selected) => {
+            onChange={selected => {
               setValues({
                 ...values,
-                region: selected,
+                region: selected
               });
             }}
           />
@@ -67,11 +67,11 @@ const Filter = ({ onClick = () => {} }) => {
       </div>
 
       <DatePicker
-        onChange={(dates) => {
+        onChange={dates => {
           setValues({
             ...values,
             from: dateFormat.render(dates.start),
-            to: dateFormat.render(dates.end),
+            to: dateFormat.render(dates.end)
           });
         }}
       />
