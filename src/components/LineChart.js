@@ -26,7 +26,6 @@ const LineChartGraph = ({ answers = [], values = {} }) => {
   const [data, setData] = useState([]);
 
   const fetchData = async (values) => {
-    console.log(values);
     setLoading(true);
     const body = await fetchTimeseries(values);
     setLoading(false);
@@ -40,7 +39,7 @@ const LineChartGraph = ({ answers = [], values = {} }) => {
       ...values,
       from: dateFormat.render(fromDate),
     });
-  }, []);
+  }, [values]);
 
   const lineData = data.map((d) => {
     return {

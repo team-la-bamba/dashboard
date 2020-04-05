@@ -12,13 +12,10 @@ const realDiff = (a, b) => {
 };
 
 const TableChartRow = ({ p = {}, qid = '', values = {} }) => {
-  const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(0);
 
   const fetchData = async (values) => {
-    setLoading(true);
     const body = await fetchAnswers(values);
-    setLoading(false);
     if (body.length && body[0].places.length) {
       setTotal(body[0].places[0].total);
     }
@@ -34,7 +31,7 @@ const TableChartRow = ({ p = {}, qid = '', values = {} }) => {
       to: dateFormat.render(fromDate),
       place: p.place,
     });
-  }, []);
+  }, [p.place, qid, values.from]);
 
   let diff = 0;
   const moreLastDay = total > p.total;

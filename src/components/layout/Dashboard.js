@@ -35,7 +35,7 @@ const Layout = () => {
 
   useEffect(() => {
     fetchAnswersInternal(values);
-  }, []);
+  }, [values]);
 
   return (
     <div className="h-screen flex bg-gray-100">
