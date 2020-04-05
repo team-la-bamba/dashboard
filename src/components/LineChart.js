@@ -1,48 +1,101 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
 } from 'recharts';
+import { fetchTimeseries } from '../lib/api';
+import tinytime from 'tinytime';
 
-const data = [
-    {
-      name: '06 Feb', uv: 4000, pv: 2400, amt: 2400,
-    },
-    {
-      name: '07 Feb', uv: 3000, pv: 1398, amt: 2210,
-    },
-    {
-      name: '08 Feb', uv: 2000, pv: 9800, amt: 2290,
-    },
-    {
-      name: '09 Feb', uv: 2780, pv: 3908, amt: 2000,
-    },
-    {
-      name: '10 Feb', uv: 1890, pv: 4800, amt: 2181,
-    },
-    {
-      name: '11 Feb', uv: 2390, pv: 3800, amt: 2500,
-    },
-    {
-      name: '12 Feb', uv: 3490, pv: 4300, amt: 2100,
-    },
-  ];
+const dateFormat = tinytime('{YYYY}-{Mo}-{DD}', {
+  padMonth: true,
+  padDays: true,
+});
 
-const LineChartGraph = () => {
+const dateNameFormat = tinytime('{DD} {MM}', {
+  padDays: true,
+});
+
+const LineChartGraph = ({ answers = [], values = {} }) => {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  const fetchData = async (values) => {
+    setLoading(true);
+    const body = await fetchTimeseries(values);
+    setLoading(false);
+    setData(body);
+  };
+
+  useEffect(() => {
+    const fromDate = new Date(values.from);
+    fromDate.setDate(fromDate.getDate() - 1);
+    fetchData({
+      ...values,
+      from: dateFormat.render(fromDate),
+    });
+  }, [values]);
+
+  let lineData = data.map((d) => {
+    return {
+      name: dateNameFormat.render(new Date(d.date)),
+      pv: d.total,
+    };
+  });
+
+  if (lineData.length === 1) {
+    const fromDate = new Date(values.from);
+    fromDate.setDate(fromDate.getDate() - 1);
+    lineData = [
+      {
+        name: dateNameFormat.render(fromDate),
+        pv: 0,
+      },
+      lineData[0]
+    ];
+  }
+
+  if (loading) {
     return (
-      <div style={{ margin: "50px auto", height: "600px", background: "white", padding: "100px 25px"}}>
-        <ResponsiveContainer>
-            <LineChart width={500} height={300} data={data}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" padding={{ left: 30, right: 30 }} />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="pv" stroke="#4299E1" />
-                <Line type="monotone" dataKey="uv" stroke="#4C51BF" />
-            </LineChart>
-        </ResponsiveContainer>
+      <div
+        style={{
+          margin: '50px auto',
+          height: '600px',
+          background: 'white',
+          padding: '100px 25px',
+        }}
+      >
+        Loading...
       </div>
     );
-}
+  }
+
+  return (
+    <div
+      style={{
+        margin: '50px auto',
+        height: '600px',
+        background: 'white',
+        padding: '100px 25px',
+      }}
+    >
+      <ResponsiveContainer>
+        <AreaChart width={500} height={300} data={lineData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" padding={{ left: 30, right: 30 }} />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Area type="monotone" dataKey="pv" stroke="#667EEA" fill="#A3BFFA" />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};
 
 export default LineChartGraph;
