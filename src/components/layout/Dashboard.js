@@ -8,7 +8,7 @@ import { fetchAnswers } from '../../lib/api';
 
 const dateFormat = tinytime('{YYYY}-{Mo}-{DD}', {
   padMonth: true,
-  padDays: true
+  padDays: true,
 });
 
 const Layout = () => {
@@ -17,12 +17,12 @@ const Layout = () => {
   const [values, setValues] = useState({
     region: '',
     from: dateFormat.render(fromDate),
-    to: dateFormat.render(new Date())
+    to: dateFormat.render(new Date()),
   });
   const [answers, setAnswers] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchAnswersInternal = async values => {
+  const fetchAnswersInternal = async (values) => {
     setLoading(true);
 
     if (values && Object.keys(values).length) {
@@ -40,14 +40,14 @@ const Layout = () => {
 
   return (
     <div className="h-screen flex bg-gray-100">
-      <Sidebar onClick={values => fetchAnswersInternal(values)} />
+      <Sidebar onClick={(values) => fetchAnswersInternal(values)} />
 
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
-        <Header />
         <main
           className="flex-1 relative z-0 overflow-y-auto pt-2 pb-6 focus:outline-none md:py-6"
           tabIndex="0"
         >
+          <Header />
           {loading ? (
             <p className="text-center">Loading...</p>
           ) : (
