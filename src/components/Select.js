@@ -2,33 +2,36 @@ import React from 'react';
 import Select from 'react-select';
 
 export default ({ label, onChange, options, placeholder, value }) => {
-  const selected = options.filter((o) => o.value === value).pop();
+  const selected = options.filter(o => o.value === value).pop();
 
   const customStyles = {
-    option: (provided) => ({
+    option: provided => ({
       ...provided,
       padding: 20,
-      color: '#333',
+      color: '#333'
     }),
-    control: (provided) => ({
+    control: provided => ({
       ...provided,
       boxShadow: '0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06)',
       borderColor: '#9fa6b2',
-      padding: '0',
+      padding: '0'
     }),
-    valueContainer: (provided) => ({
+    valueContainer: provided => ({
       ...provided,
-      padding: '0',
+      padding: '0'
     }),
     indicatorSeparator: () => ({}),
-    dropdownIndicator: (provided) => ({
+    dropdownIndicator: provided => ({
       ...provided,
-      color: '#333',
+      color: '#333'
     }),
     placeholder: () => ({
       color: '#333',
-      paddingLeft: '1rem',
+      paddingLeft: '1rem'
     }),
+    singleValue: () => ({
+      paddingLeft: '1rem'
+    })
   };
 
   return (
@@ -36,7 +39,7 @@ export default ({ label, onChange, options, placeholder, value }) => {
       aria-label={label}
       placeholder={placeholder}
       value={selected}
-      onChange={(selected) => onChange(selected ? selected.value : null)}
+      onChange={selected => onChange(selected ? selected.value : null)}
       isSearchable={true}
       isClearable={true}
       options={options}
