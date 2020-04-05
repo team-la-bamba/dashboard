@@ -49,7 +49,7 @@ const Filter = ({ onClick = () => {} }) => {
         <div className="inline-block relative w-full">
           <Select
             label="Välj"
-            placeholder="..."
+            placeholder="Alla"
             options={regions.map((r) => {
               return {
                 label: r,

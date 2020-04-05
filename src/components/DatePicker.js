@@ -4,10 +4,11 @@ import DatePickerLib from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const DatePicker = ({ onChange = () => {} }) => {
-  const date = new Date();
+  const fromDate = new Date();
+  fromDate.setDate(fromDate.getDate() - 2);
 
-  const [startDate, setStartDate] = useState(date);
-  const [endDate, setEndDate] = useState(date);
+  const [startDate, setStartDate] = useState(fromDate);
+  const [endDate, setEndDate] = useState(new Date());
 
   return (
     <div>
