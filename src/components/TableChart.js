@@ -13,7 +13,6 @@ const realDiff = (a, b) => {
 
 const TableChartRow = ({ p = {}, qid = '', values = {} }) => {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
 
   const fetchData = async (values) => {
@@ -45,7 +44,7 @@ const TableChartRow = ({ p = {}, qid = '', values = {} }) => {
     diff = realDiff(total, p.total);
   }
 
-  diff = diff.toFixed(2);
+  diff = diff.toFixed(0);
 
   return (
     <>
