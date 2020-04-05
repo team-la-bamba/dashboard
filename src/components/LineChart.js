@@ -12,6 +12,11 @@ import {
 import { fetchTimeseries } from '../lib/api';
 import tinytime from 'tinytime';
 
+const dateFormat = tinytime('{YYYY}-{Mo}-{DD}', {
+  padMonth: true,
+  padDays: true,
+});
+
 const dateNameFormat = tinytime('{DD} {MM}', {
   padDays: true,
 });
@@ -28,15 +33,32 @@ const LineChartGraph = ({ answers = [], values = {} }) => {
   };
 
   useEffect(() => {
-    fetchData(values);
-  }, []);
+    const fromDate = new Date(values.from);
+    fromDate.setDate(fromDate.getDate() - 1);
+    fetchData({
+      ...values,
+      from: dateFormat.render(fromDate),
+    });
+  }, [values]);
 
-  const lineData = data.map((d) => {
+  let lineData = data.map((d) => {
     return {
       name: dateNameFormat.render(new Date(d.date)),
       pv: d.total,
     };
   });
+
+  if (lineData.length === 1) {
+    const fromDate = new Date(values.from);
+    fromDate.setDate(fromDate.getDate() - 1);
+    lineData = [
+      {
+        name: dateNameFormat.render(fromDate),
+        pv: 0,
+      },
+      lineData[0]
+    ];
+  }
 
   if (loading) {
     return (

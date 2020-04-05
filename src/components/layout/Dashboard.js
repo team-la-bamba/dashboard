@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
+import Header from '../Header';
 import LineChart from '../LineChart';
 import TableChart from '../TableChart';
 import tinytime from 'tinytime';
@@ -12,7 +13,7 @@ const dateFormat = tinytime('{YYYY}-{Mo}-{DD}', {
 
 const Layout = () => {
   const fromDate = new Date();
-  fromDate.setDate(fromDate.getDate()-2);
+  fromDate.setDate(fromDate.getDate() - 2);
   const [values, setValues] = useState({
     region: '',
     from: dateFormat.render(fromDate),
@@ -35,10 +36,10 @@ const Layout = () => {
 
   useEffect(() => {
     fetchAnswersInternal(values);
-  }, []);
+  }, [values]);
 
   return (
-    <div className="h-screen flex bg-gray-100">
+    <div className="h-screen flex bg-gray-100 border-t-4 border-solid border-blue-500 bg-gray-50">
       <Sidebar onClick={(values) => fetchAnswersInternal(values)} />
 
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
@@ -46,6 +47,7 @@ const Layout = () => {
           className="flex-1 relative z-0 overflow-y-auto pt-2 pb-6 focus:outline-none md:py-6"
           tabIndex="0"
         >
+          <Header />
           {loading ? (
             <p className="text-center">Loading...</p>
           ) : (
@@ -56,7 +58,7 @@ const Layout = () => {
                 <div className="mt-10 grid grid-flow-row grid-cols-2 gap-4">
                   {answers.map((q, qi) => (
                     <div key={qi}>
-                      <TableChart {...q} />
+                      <TableChart {...q} values={values} />
                     </div>
                   ))}
                 </div>
