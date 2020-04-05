@@ -100,7 +100,7 @@ const Layout = () => {
               <div className="py-4">
                 {/*<Stats />*/}
 
-                <div className="mt-10 grid grid-flow-row grid-cols-2 gap-4">
+                <div className="mt-10 grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-4">
                   {answers.map((q, qi) => (
                     <div key={qi}>
                       <TableChart {...q} values={values} language={language} />

@@ -45,7 +45,7 @@ const TableChartRow = ({ p = {}, qid = '', values = {} }) => {
 
   return (
     <>
-      <div className="mt-8 sm:mt-0 sm:grid sm:grid-cols-4 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
+      <div className="mt-0 grid grid-cols-4 gap-4 border-t border-gray-200 sm:px-6 py-5">
         <dt className="text-sm leading-5 font-medium text-gray-500">
           {p.place}
         </dt>
@@ -104,7 +104,7 @@ const TableChartRow = ({ p = {}, qid = '', values = {} }) => {
 
 const TableChart = ({ question = {}, places = [], values = {}, language = {} }) => {
   return (
-    <div className="bg-white shadow overflow-hidden  sm:rounded-lg">
+    <div className="bg-white shadow overflow-hidden sm:rounded-lg">
       <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
         <h3 className="text-lg leading-6 font-medium text-gray-900">
           {language.question}: {question.text[language.appLang]}
@@ -115,7 +115,7 @@ const TableChart = ({ question = {}, places = [], values = {}, language = {} }) 
       </div>
 
       <div className="px-4 py-5 sm:p-0">
-        <div className="sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6 sm:py-5">
+        <div className="grid grid-cols-4 gap-4 sm:px-6 py-5">
           <div className="text-sm leading-5 font-medium text-gray-500">
             {language.municipality}
           </div>
