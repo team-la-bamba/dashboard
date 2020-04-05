@@ -4,7 +4,7 @@ function Header({ children }) {
   return (
     <div>
       <h1 className="mt-6 text-center text-5xl leading-9 font-bold text-gray-900">
-        Kristempen{' '}
+        Kristempen{' '}Dashboard{' '}
         <span role="img" aria-label="fever-emoji">
           🤒
         </span>
