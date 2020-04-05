@@ -50,7 +50,7 @@ const TableChartRow = ({ p = {}, qid = '', values = {} }) => {
     <>
       <div className="mt-8 sm:mt-0 sm:grid sm:grid-cols-4 sm:gap-4 sm:border-t sm:border-gray-200 sm:px-6 sm:py-5">
         <dt className="text-sm leading-5 font-medium text-gray-500">
-          {p.place} - {moreLastDay ? 'more' : 'less'}
+          {p.place}
         </dt>
 
         {p.answers.map((a, ai) => (
